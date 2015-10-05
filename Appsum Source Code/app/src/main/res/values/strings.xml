@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">APPSUM</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="heading_one">Roux Academy</string>
+    <string name="heading_two">Register here</string>
+    <string name="Firstname">First Name:</string>
+    <string name="last_name">Last Name:</string>
+</resources>
