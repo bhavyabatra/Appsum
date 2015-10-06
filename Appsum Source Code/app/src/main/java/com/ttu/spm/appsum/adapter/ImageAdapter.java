@@ -24,22 +24,22 @@ public class ImageAdapter extends BaseAdapter {
 
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View gridView;
+		View menu_item;
 
 		if (convertView == null) {
 
-			gridView = new View(context);
+			menu_item = new View(context);
 
-			// get layout from activity_main.xml
-			gridView = inflater.inflate(R.layout.menu_item, null);
+			// get layout reference from menu_item
+			menu_item = inflater.inflate(R.layout.menu_item, null);
 
-			// Get textview from menu_item.xml and set the title to it
-			TextView textView = (TextView) gridView
+			// Get Textview from menu_item.xml and set the title to it
+			TextView menu_item_textview = (TextView) menu_item
 					.findViewById(R.id.grid_item_text);
-			textView.setText(MENU_ITEMS[position]);
+			menu_item_textview.setText(MENU_ITEMS[position]);
 
 			// set image based on selected text
-			ImageView imageView = (ImageView) gridView
+			ImageView imageView = (ImageView) menu_item
 					.findViewById(R.id.grid_item_image);
 			String menutype = MENU_ITEMS[position];
 			if (menutype.equals("FOOD")) {
@@ -52,15 +52,13 @@ public class ImageAdapter extends BaseAdapter {
 				else if (menutype.equals("ACCOMMODATION")) {
 					imageView.setImageResource(R.drawable.accomodation_menu);
 
-				} else {
-
-			}
+				}
 
 		} else {
-			gridView = (View) convertView;
+			menu_item = (View) convertView;
 		}
-		gridView.setPressed(true);
-		return gridView;
+		menu_item.setPressed(true);
+		return menu_item;
 	}
 
 	@Override

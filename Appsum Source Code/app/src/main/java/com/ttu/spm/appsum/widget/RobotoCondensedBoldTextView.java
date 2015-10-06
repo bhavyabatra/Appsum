@@ -33,7 +33,7 @@ public class RobotoCondensedBoldTextView
     if (!isInEditMode()) {}
     try
     {
-      setTypeface(Typeface.createFromAsset(paramContext.getAssets(), "fonts/roboto.otf"));
+      setTypeface(Typeface.createFromAsset(paramContext.getAssets(), "fonts/roboto.ttf"));
       return;
     }
     catch (Exception localException)
@@ -49,7 +49,7 @@ public class RobotoCondensedBoldTextView
     if (!isInEditMode()) {}
     try
     {
-      setTypeface(Typeface.createFromAsset(paramContext.getAssets(), "fonts/roboto.otf"));
+      setTypeface(Typeface.createFromAsset(paramContext.getAssets(), "fonts/roboto.ttf"));
       return;
     }
     catch (Exception localException)

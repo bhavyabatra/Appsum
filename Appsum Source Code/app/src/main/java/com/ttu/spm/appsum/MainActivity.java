@@ -1,5 +1,6 @@
 package com.ttu.spm.appsum;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.location.Location;
 import android.location.LocationManager;
@@ -18,11 +19,9 @@ import com.ttu.spm.appsum.adapter.ImageAdapter;
 
 public class MainActivity extends AppCompatActivity {
     GridView gridView;
-    AppLocationService appLocationService;
     // Array to hold the menu item details
     static final String[] MENU_ITEMS = new String[] { "ACCOMMODATION","FOOD", "TRANSPORT",
             "TOURISM" };
-MenuItem citytextview;
 
 
     @Override
@@ -35,6 +34,13 @@ MenuItem citytextview;
             gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> parent, View v,
                                         int position, long id) {
+                    if (position == 1){
+                        //TODO: Showing food layout with sample screen shot. Main functionality is not yet implemented
+                        Intent food_intent = new Intent(MainActivity.this, FoodLayout.class);
+                    startActivity(food_intent);
+                    }
+
+
                     // TODO: Displaying text for testing purpose. Main functionality yet to implement
                     Toast.makeText(
                             getApplicationContext(),
@@ -69,39 +75,5 @@ MenuItem citytextview;
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    // TODO: Method to find the location. Coding not yet completed
-   private void findLocation(){
-       Log.d("loc","1");
-       Location gpsLocation = appLocationService
-               .getLocation(LocationManager.GPS_PROVIDER);
-       Log.d("loc","2");
-
-       if (gpsLocation != null) {
-           Log.d("loc","3");
-           double latitude = gpsLocation.getLatitude();
-           double longitude = gpsLocation.getLongitude();
-           LocationAddress locationAddress = new LocationAddress();
-           locationAddress.getAddressFromLocation(latitude, longitude,
-                   getApplicationContext(), new GeocoderHandler());
-       }
-   }
-    //TODO: Class to get the location
-    private class GeocoderHandler extends Handler {
-        @Override
-        public void handleMessage(Message message) {
-            String locationAddress;
-            Menu menu;
-            switch (message.what) {
-                case 1:
-                    Bundle bundle = message.getData();
-                    locationAddress = bundle.getString("address");
-                    break;
-                default:
-                    locationAddress = null;
-            }
-            citytextview.setTitle(locationAddress);
-        }
     }
 }
