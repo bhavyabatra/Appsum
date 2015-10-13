@@ -1,5 +1,4 @@
 package com.ttu.spm.appsum.adapter;
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.Log;
