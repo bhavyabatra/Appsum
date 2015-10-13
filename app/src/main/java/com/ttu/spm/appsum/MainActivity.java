@@ -40,13 +40,11 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(food_intent);
                     }
 
-
                     // TODO: Displaying text for testing purpose. Main functionality yet to implement
                     Toast.makeText(
                             getApplicationContext(),
                             ((TextView) v.findViewById(R.id.grid_item_text))
                                     .getText(), Toast.LENGTH_SHORT).show();
-
                 }
             });
        }

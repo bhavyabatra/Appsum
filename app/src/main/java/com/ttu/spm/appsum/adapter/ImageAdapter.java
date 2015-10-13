@@ -1,13 +1,17 @@
 package com.ttu.spm.appsum.adapter;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.graphics.drawable.Drawable;
+
 
 import com.ttu.spm.appsum.R;
 
@@ -27,33 +31,19 @@ public class ImageAdapter extends BaseAdapter {
 		View menu_item;
 
 		if (convertView == null) {
-
 			menu_item = new View(context);
-
 			// get layout reference from menu_item
 			menu_item = inflater.inflate(R.layout.menu_item, null);
-
 			// Get Textview from menu_item.xml and set the title to it
 			TextView menu_item_textview = (TextView) menu_item
 					.findViewById(R.id.grid_item_text);
 			menu_item_textview.setText(MENU_ITEMS[position]);
-
-			// set image based on selected text
-			ImageView imageView = (ImageView) menu_item
+			// Get image view to add the menu icon
+			ImageView menu_Image_View = (ImageView) menu_item
 					.findViewById(R.id.grid_item_image);
-			String menutype = MENU_ITEMS[position];
-			if (menutype.equals("FOOD")) {
-				imageView.setImageResource(R.drawable.food_menu);
-			} else if (menutype.equals("TOURISM")) {
-				imageView.setImageResource(R.drawable.tourism_menu);
-			} else if (menutype.equals("TRANSPORT")) {
-				imageView.setImageResource(R.drawable.taxi_menu);
-			}
-				else if (menutype.equals("ACCOMMODATION")) {
-					imageView.setImageResource(R.drawable.accomodation_menu);
-
-				}
-
+			String menu_type = MENU_ITEMS[position];
+			int drawableResource=getDrawableResourceId(menu_type);
+			menu_Image_View.setImageResource(drawableResource);
 		} else {
 			menu_item = (View) convertView;
 		}
@@ -75,5 +65,25 @@ public class ImageAdapter extends BaseAdapter {
 	public long getItemId(int position) {
 		return 0;
 	}
+	private int getDrawableResourceId(String menu_Type) {
+		Resources res = this.context.getResources();
+		int id;
+		//
+		if (menu_Type.equals("FOOD")) {
+			id = res.getIdentifier("food_menu", "drawable", this.context.getPackageName());
+		} else if (menu_Type.equals("TOURISM")) {
+			id = res.getIdentifier("tourism_menu", "drawable", this.context.getPackageName());
+		} else if (menu_Type.equals("TRANSPORT")) {
+			id = res.getIdentifier("taxi_menu", "drawable", this.context.getPackageName());
+		}
+		else if (menu_Type.equals("ACCOMMODATION")) {
+			id = res.getIdentifier("accomodation_menu", "drawable", this.context.getPackageName());
+		}
+		else  {
+			id = res.getIdentifier("accomodation_menu", "drawable", this.context.getPackageName());
+		}
 
+		// return resource identifier
+		return id;
+	}
 }

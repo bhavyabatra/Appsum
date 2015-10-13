@@ -13,8 +13,6 @@ public class RobotoCondensedBoldTextView
   public RobotoCondensedBoldTextView(Context paramContext)
   {
     super(paramContext);
-
-    if (!isInEditMode()) {}
     try
     {
       setTypeface(Typeface.createFromAsset(paramContext.getAssets(), "fonts/Roboto-Light.ttf"));
@@ -29,8 +27,6 @@ public class RobotoCondensedBoldTextView
   public RobotoCondensedBoldTextView(Context paramContext, AttributeSet paramAttributeSet)
   {
     super(paramContext, paramAttributeSet);
-
-    if (!isInEditMode()) {}
     try
     {
       setTypeface(Typeface.createFromAsset(paramContext.getAssets(), "fonts/roboto.ttf"));
@@ -46,7 +42,6 @@ public class RobotoCondensedBoldTextView
   public RobotoCondensedBoldTextView(Context paramContext, AttributeSet paramAttributeSet, int paramInt)
   {
     super(paramContext, paramAttributeSet, paramInt);
-    if (!isInEditMode()) {}
     try
     {
       setTypeface(Typeface.createFromAsset(paramContext.getAssets(), "fonts/roboto.ttf"));
