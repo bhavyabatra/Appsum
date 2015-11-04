@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="180dp"
+    android:orientation="vertical"
+    android:id="@+id/lytMenuItem"
+    android:background="@drawable/home_grid_cell_drawable"
+    android:gravity="center"
+    android:padding="14.0dip">
+
+        <ImageView
+            android:id="@+id/grid_item_image"
+            android:layout_width="50dp"
+            android:layout_height="90dp"
+            android:layout_marginBottom="10.0dip"
+            android:contentDescription="@string/app_name"
+            android:duplicateParentState="true"
+            android:scaleType="fitCenter" />
+
+        <com.ttu.spm.appsum.widget.RobotoCondensedBoldTextView
+            android:id="@+id/grid_item_text"
+            style="@style/HeaderStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="20dp"
+            android:duplicateParentState="true"
+            android:gravity="center"
+            android:shadowColor="@color/white"
+            android:shadowDx="1.0"
+            android:shadowDy="1.0"
+            android:shadowRadius="1.0"
+            android:text="FOOD"
+            android:textColor="@color/header_black"
+            android:textStyle="bold"
+            android:textSize="15.0sp"/>
+    </LinearLayout>
