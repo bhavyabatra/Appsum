@@ -4,9 +4,10 @@ package com.ttu.spm.appsum.CitySelection;
  * Created by Manohar on 10/15/2015.
  */
 import java.util.List;
+import java.util.Locale;
 
 
-        import android.content.Context;
+import android.content.Context;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
@@ -60,7 +61,9 @@ public class CityAdapter extends ArrayAdapter<City>{
 
         City city = cityList.get(position);
         TextView cityText = (TextView) convertView.findViewById(R.id.cityName);
-        cityText.setText(city.getName() + "," + city.getCountry());
+        Locale loc = new Locale("",city.getCountry());
+
+        cityText.setText(city.getName() + "," + loc.getDisplayCountry());
 
         return convertView;
     }

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff1f1f1"
+    android:scrollbars="none"
+    android:id="@+id/emergency_activity_layout">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Country              :"
+        android:id="@+id/country"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" NA"
+        android:id="@+id/country_value"
+        android:textSize="20sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/police_no_value"
+        android:layout_alignStart="@+id/police_no_value" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Police No           :"
+        android:id="@+id/police_no"
+        android:textSize="20sp"
+        android:layout_below="@+id/country"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" NA"
+        android:id="@+id/police_no_value"
+        android:textSize="20sp"
+        android:layout_alignTop="@+id/police_no"
+        android:layout_toRightOf="@+id/ambulance_no"
+        android:layout_toEndOf="@+id/ambulance_no" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ambulance No  :"
+        android:id="@+id/ambulance_no"
+        android:textSize="20sp"
+        android:layout_below="@+id/police_no"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" NA"
+        android:id="@+id/ambulance_no_value"
+        android:textSize="20sp"
+        android:layout_below="@+id/police_no_value"
+        android:layout_toRightOf="@+id/ambulance_no"
+        android:layout_toEndOf="@+id/ambulance_no" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fire Control No  :"
+        android:id="@+id/firecontrol_no"
+        android:textSize="20sp"
+        android:layout_below="@+id/ambulance_no"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" NA"
+        android:id="@+id/firecontrol_no_value"
+        android:textSize="20sp"
+        android:layout_below="@+id/ambulance_no"
+        android:layout_toRightOf="@+id/ambulance_no"
+        android:layout_toEndOf="@+id/ambulance_no" />
+
+
+
+</RelativeLayout>

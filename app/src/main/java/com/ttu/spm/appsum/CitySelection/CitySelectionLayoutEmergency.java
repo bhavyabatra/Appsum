@@ -1,6 +1,5 @@
 package com.ttu.spm.appsum.CitySelection;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,10 +10,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.ttu.spm.appsum.R;
-import com.ttu.spm.appsum.CitySelection.SelectedCitySerializable;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,14 +27,12 @@ import java.util.List;
 /**
  * Created by Manohar on 10/5/2015.
  */
-public class CitySelectionLayout extends AppCompatActivity {
+public class CitySelectionLayoutEmergency extends AppCompatActivity {
 
     private CityAdapter adp;
     public String data;
     ListView cityListView;
     List<City> cityList = null;
-    Context context;
-    boolean connection_error;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,9 +40,8 @@ public class CitySelectionLayout extends AppCompatActivity {
         setContentView(R.layout.city_selection_layout);
         //
         //
-        context=this;
         cityListView = (ListView) findViewById(R.id.cityList);
-        adp = new CityAdapter(CitySelectionLayout.this, new ArrayList<City>());
+        adp = new CityAdapter(CitySelectionLayoutEmergency.this, new ArrayList<City>());
         cityListView.setAdapter(adp);
 
         final EditText edt = (EditText) findViewById(R.id.cityEdtText);
@@ -92,15 +86,14 @@ public class CitySelectionLayout extends AppCompatActivity {
                                     int position, long id) {
                 City city = cityList.get(position);
                 if (position > -1) {
-                    SelectedCitySerializable obj_selected_city = new SelectedCitySerializable(city.getName(), city.getCountry(), city.getLatitude(), city.getLongitude());
-                    getIntent().putExtra("Selected_City", obj_selected_city);
-                    setResult(RESULT_OK, getIntent());
-                    finish();
+                    SelectedCitySerializable obj_selected_city = new SelectedCitySerializable(city.getName(),city.getCountry(),city.getLatitude(),city.getLongitude());
+                    getIntent().putExtra("Selected_City",obj_selected_city);
+                    setResult(RESULT_OK,getIntent());
+                finish();
                 }
 
 
-            }
-        });
+        }});
     }
     private void search(String pattern) {
 
@@ -109,18 +102,11 @@ public class CitySelectionLayout extends AppCompatActivity {
         Log.d("autoplace", "Gotfocus3");
 
         try {
-            connection_error=false;
             new GetCities().execute(url);
-            if (connection_error==true) {
-                Toast.makeText(getApplicationContext(), "Unable to get cities. Please check internet connection",
-                      Toast.LENGTH_LONG).show();
+            Log.d("autoplace","Connection success");
 
-            }
-            }
-        catch (Throwable t) {
-            Toast.makeText(getApplicationContext(), "Unable to get cities. Please check internet connection",
-                    Toast.LENGTH_LONG).show();
-
+        } catch (Throwable t) {
+            return;
         }
 
     }
@@ -146,17 +132,13 @@ public class CitySelectionLayout extends AppCompatActivity {
                     buffer.append(line + "\r\n");
                 }
             } catch (Throwable t) {
-                connection_error=true;
-                //Toast.makeText(context, "Unable to get cities. Please check internet connection",
-                  //      Toast.LENGTH_LONG).show();
-
             }
             data=buffer.toString();
             return data;
         }
         @Override
         protected void onPostExecute(String result) {
-            Log.d("Postexecute", "OK");
+            Log.d("Postexecute","OK");
             if (result.length()>0) {
                 try {
                     cityList = getCityList(result);
