@@ -17,6 +17,8 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.ttu.spm.appsum.Entertainment.Movies;
 import com.ttu.spm.appsum.adapter.ImageAdapter;
 import com.ttu.spm.appsum.places.Attractions;
 
@@ -219,6 +221,20 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
               }
 
               break;
+          case "ENTERTAINMENT":
+              if (current_city.latitude!=0 && current_city.longitude!=0) {
+                  Intent entertainment_intent = new Intent(MainActivity.this, Movies.class);
+               //   attractions_intent.putExtra("Latitude", current_city.latitude);
+                 // attractions_intent.putExtra("Longitude", current_city.longitude);
+                  startActivity(entertainment_intent);
+              }
+              else{
+                  Toast.makeText(getApplicationContext(), "No city selected. Please select the city",
+                          Toast.LENGTH_LONG).show();
+              }
+
+              break;
+
           case "EMERGENCY":
             //  Intent emergency_intent = new Intent(MainActivity.this, Emergency.class);
             //  emergency_intent.putExtra("Latitude",current_city.latitude);

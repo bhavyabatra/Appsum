@@ -61,6 +61,10 @@
             android:name=".Food.Restaurants"
             android:label="Restaurants"
             android:parentActivityName=".layoutSelector.MainActivity"></activity>
+        <activity
+            android:name=".Entertainment.Movies"
+            android:label="Movies"
+            android:parentActivityName=".layoutSelector.MainActivity"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

@@ -18,6 +18,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ttu.spm.appsum.Entertainment.Movies;
 import com.ttu.spm.appsum.Food.Restaurants;
 import com.ttu.spm.appsum.Hotels.Accomadations;
 import com.ttu.spm.appsum.R;
@@ -114,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 String cityName = addresses.get(0).getLocality();
                 current_city.city_name = cityName;
                 Locale loc = new Locale("",addresses.get(0).getCountryName());
-                current_city.country = loc.getDisplayCountry();
+                current_city.country = toTitleCase(loc.getCountry());
                 current_city.latitude=current_Latitude;
                 current_city.longitude=current_Longitude;
                 //
@@ -133,7 +134,28 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
 
     }
+    public static String toTitleCase(String input) {
+        StringBuilder titleCase = new StringBuilder();
+        boolean nextTitleCase = true;
 
+        for (char c : input.toCharArray()) {
+            if (Character.isSpaceChar(c)) {
+                nextTitleCase = true;
+            } else if (nextTitleCase) {
+                c = Character.toTitleCase(c);
+                nextTitleCase = false;
+            }
+                else{
+                    c=Character.toLowerCase(c);
+
+                }
+
+
+            titleCase.append(c);
+        }
+
+        return titleCase.toString();
+    }
     @Override
     public void onProviderDisabled(String provider) {
         Log.d("Location", "disable");
@@ -261,6 +283,20 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
 
             break;
+          case "ENTERTAINMENT":
+              if (current_city.latitude!=0 && current_city.longitude!=0) {
+                  Intent entertainment_intent = new Intent(MainActivity.this, Movies.class);
+                  //   attractions_intent.putExtra("Latitude", current_city.latitude);
+                  // attractions_intent.putExtra("Longitude", current_city.longitude);
+                  startActivity(entertainment_intent);
+              }
+              else{
+                  Toast.makeText(getApplicationContext(), "No city selected. Please select the city",
+                          Toast.LENGTH_LONG).show();
+              }
+
+              break;
+
           case "ACCOMMODATION":
               if (current_city.latitude != 0 && current_city.longitude != 0) {
                   Intent accomodation_intent = new Intent(MainActivity.this, Accomadations.class);
