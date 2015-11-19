@@ -47,6 +47,8 @@ public class Place {
     private String lang;
     private Bitmap main_icon;
     private String main_icon_url;
+    private int TotalReviews;
+
 
     protected Place() {
     }
@@ -75,6 +77,7 @@ public class Place {
             String url = result.optString(STRING_URL, null);
             String vicinity = result.optString(STRING_VICINITY, null);
             String website = result.optString(STRING_WEBSITE, null);
+            int TotalReviews = result.optInt("user_ratings_total", 0);
             int utcOffset = result.optInt(INTEGER_UTC_OFFSET, -1);
             String scopeName = result.optString(STRING_SCOPE);
             Scope scope = scopeName == null ? null : Scope.valueOf(scopeName);
@@ -128,7 +131,7 @@ public class Place {
 
             Place place = new Place();
 
-            // photos
+      /*      // photos
             JSONArray jsonPhotos = result.optJSONArray(ARRAY_PHOTOS);
             List<Photo> photos = new ArrayList<>();
             if (jsonPhotos != null) {
@@ -138,7 +141,7 @@ public class Place {
                     int width = jsonPhoto.getInt(INTEGER_WIDTH), height = jsonPhoto.getInt(INTEGER_HEIGHT);
                     photos.add(new Photo(place, photoReference, width, height));
                 }
-            }
+            }*/
 
 
             // address components
@@ -167,14 +170,14 @@ public class Place {
                 }
             }
 
-            // types
+            /* // types
             JSONArray jsonTypes = result.optJSONArray(ARRAY_TYPES);
             List<String> types = new ArrayList<>();
             if (jsonTypes != null) {
                 for (int i = 0; i < jsonTypes.length(); i++) {
                     types.add(jsonTypes.getString(i));
                 }
-            }
+            }*/
 
             // reviews
             JSONArray jsonReviews = result.optJSONArray(ARRAY_REVIEWS);
@@ -207,7 +210,7 @@ public class Place {
                 }
             }
 
-            // alt-ids
+          /*  // alt-ids
             JSONArray jsonAltIds = result.optJSONArray(ARRAY_ALT_IDS);
             List<AltId> altIds = new ArrayList<>();
             if (jsonAltIds != null) {
@@ -220,14 +223,14 @@ public class Place {
 
                     altIds.add(new AltId(client, placeId, s));
                 }
-            }
+            }*/
 
             return place.setPlaceId(id).setClient(client).setName(name).setAddress(address).setIconUrl(iconUrl).setPrice(price)
-                    .setLatitude(lat).setLongitude(lng).addTypes(types).setRating(rating).setStatus(status)
+                    .setLatitude(lat).setLongitude(lng).setRating(rating).setStatus(status)
                     .setVicinity(vicinity).setPhoneNumber(phone).setInternationalPhoneNumber(internationalPhone)
-                    .setGoogleUrl(url).setWebsite(website).addPhotos(photos).addAddressComponents(addressComponents)
-                    .setHours(schedule).addReviews(reviews).setUtcOffset(utcOffset).setScope(scope).addAltIds(altIds)
-                    .setJson(result);
+                    .setGoogleUrl(url).setWebsite(website).addAddressComponents(addressComponents)
+                    .setHours(schedule).addReviews(reviews).setUtcOffset(utcOffset).setScope(scope)
+                    .setJson(result).setTotalReviews(TotalReviews);
         }catch (JSONException E){
         }
         return null;
@@ -298,6 +301,14 @@ public class Place {
      *
      * @return longitude
      */
+    protected Place setTotalReviews(int TotalReviews) {
+        this.TotalReviews = TotalReviews;
+        return this;
+    }
+    protected int getTotalReviews() {
+        return this.TotalReviews;
+    }
+
     public double getLongitude() {
         return lng;
     }

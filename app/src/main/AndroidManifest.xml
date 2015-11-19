@@ -39,13 +39,34 @@
             android:name=".CitySelection.CitySelectionLayoutEmergency"
             android:label="Select City"
             android:parentActivityName=".layoutSelector.EmergencyLayout" />
+        <activity
+            android:name=".places.AttractionPlaceDetails"
+            android:label="CTScan"
+            android:launchMode="singleTop"
+            android:parentActivityName=".places.Attractions" />
+        <activity
+            android:name=".Transport.TransportDetails"
+            android:label="@string/app_name">
+        </activity>
+        <activity
+            android:name=".layoutSelector.TransportLayer"
+            android:label="Transport"
+            android:launchMode="singleTop"
+            android:parentActivityName=".layoutSelector.MainActivity" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDhjJfd3CFnWEA5HW2nD5_1Xql7Yms4-Hw" />
-
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data android:name="com.usebutton.applicationid" android:value="app-4e621db2a8146052"/>
     </application>
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 </manifest>

@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.ttu.spm.appsum.R;
@@ -67,6 +69,22 @@ public class Attractions extends AppCompatActivity {
                 }
             }
         });
+        places_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+                Place selectedPlace = places.get(position);
+                if (position > -1) {
+                    Intent attractions_intent = new Intent(Attractions.this, AttractionPlaceDetails.class);
+                    attractions_intent.putExtra("PlaceName", selectedPlace.getName());
+                    attractions_intent.putExtra("City", "Lubbock");
+                    attractions_intent.putExtra("PlaceId", selectedPlace.getPlaceId());
+                    startActivity(attractions_intent);
+                }
+
+
+            }
+        });
+
         try {
             getAttractions ga = new getAttractions(Attractions.this);
             ga.execute("Test");

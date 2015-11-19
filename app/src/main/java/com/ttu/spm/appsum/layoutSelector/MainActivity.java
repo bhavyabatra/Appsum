@@ -223,6 +223,18 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
               }
 
               break;
+          case "TRANSPORT":
+              if (current_city.latitude!=0 && current_city.longitude!=0) {
+                  Intent transport_intent = new Intent(MainActivity.this, TransportLayer.class);
+                  // attractions_intent.putExtra("Latitude", current_city.latitude);
+                  //attractions_intent.putExtra("Longitude", current_city.longitude);
+                  startActivity(transport_intent);
+              }
+              else{
+                  Toast.makeText(getApplicationContext(), R.string.selectCityError,
+                          Toast.LENGTH_LONG).show();
+              }
+              break;
           case "EMERGENCY":
 
               // Creating new intent for EmergencyLayout
