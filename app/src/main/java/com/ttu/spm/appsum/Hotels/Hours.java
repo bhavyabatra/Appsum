@@ -1,4 +1,6 @@
-package com.ttu.spm.appsum.places;
+package com.ttu.spm.appsum.Hotels;
+
+import com.ttu.spm.appsum.places.Day;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,7 +13,7 @@ public class Hours {
     private final List<Period> periods = new ArrayList<>();
     private boolean alwaysOpened;
 
-    public Hours() {
+    protected Hours() {
     }
 
     /**
@@ -29,7 +31,7 @@ public class Hours {
      * @param alwaysOpened if this place is always opened
      * @return this
      */
-    public Hours setAlwaysOpened(boolean alwaysOpened) {
+    protected Hours setAlwaysOpened(boolean alwaysOpened) {
         this.alwaysOpened = alwaysOpened;
         return this;
     }
@@ -40,7 +42,7 @@ public class Hours {
      * @param period to add
      * @return this
      */
-    public Hours addPeriod(Period period) {
+    protected Hours addPeriod(Period period) {
         periods.add(period);
         return this;
     }
@@ -67,10 +69,10 @@ public class Hours {
      * Represents a period of time in which the place is opened.
      */
     public static class Period {
-        private Day openingDay, closingDay;
+        private com.ttu.spm.appsum.places.Day openingDay, closingDay;
         private String openingTime, closingTime;
 
-        public Period() {
+        protected Period() {
         }
 
         /**
@@ -78,7 +80,7 @@ public class Hours {
          *
          * @return opening day
          */
-        public Day getOpeningDay() {
+        public com.ttu.spm.appsum.places.Day getOpeningDay() {
             return openingDay;
         }
 
@@ -88,7 +90,7 @@ public class Hours {
          * @param openingDay starting day
          * @return this
          */
-        public Period setOpeningDay(Day openingDay) {
+        protected Period setOpeningDay(com.ttu.spm.appsum.places.Day openingDay) {
             this.openingDay = openingDay;
             return this;
         }
@@ -108,7 +110,7 @@ public class Hours {
          * @param openingTime starting time
          * @return this
          */
-        public Period setOpeningTime(String openingTime) {
+        protected Period setOpeningTime(String openingTime) {
             this.openingTime = openingTime;
             return this;
         }
@@ -118,7 +120,7 @@ public class Hours {
          *
          * @return closing day
          */
-        public Day getClosingDay() {
+        public com.ttu.spm.appsum.places.Day getClosingDay() {
             return closingDay;
         }
 
@@ -128,7 +130,7 @@ public class Hours {
          * @param closingDay end day
          * @return this
          */
-        public Period setClosingDay(Day closingDay) {
+        protected Period setClosingDay(Day closingDay) {
             this.closingDay = closingDay;
             return this;
         }
@@ -148,7 +150,7 @@ public class Hours {
          * @param closingTime end time
          * @return this
          */
-        public Period setClosingTime(String closingTime) {
+        protected Period setClosingTime(String closingTime) {
             this.closingTime = closingTime;
             return this;
         }

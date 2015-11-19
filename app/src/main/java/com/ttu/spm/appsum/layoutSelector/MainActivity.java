@@ -18,6 +18,8 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ttu.spm.appsum.Food.Restaurants;
+import com.ttu.spm.appsum.Hotels.Accomadations;
 import com.ttu.spm.appsum.R;
 import com.ttu.spm.appsum.adapter.ImageAdapter;
 import com.ttu.spm.appsum.places.Attractions;
@@ -199,17 +201,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
       switch (selected_menu) {
           case "FOOD":
               //TODO: Showing food layout with sample screen shot. Main functionality is not yet implemented
-              Intent food_intent = new Intent(MainActivity.this, FoodLayout.class);
-              //  food_intent.putExtra("Latitude",current_city.latitude);
-              //  food_intent.putExtra("Longitude", current_city.longitude);
+              Intent food_intent = new Intent(MainActivity.this, Restaurants.class);
+              food_intent.putExtra("Latitude", current_city.latitude);
+              food_intent.putExtra("Longitude", current_city.longitude);
               //
-              // Use following code in target class to receive parameters
-              //   Intent intent = getIntent();
-              // Get Latitude and Longitude from parent activity
-              // Latitude = intent.getDoubleExtra("Latitude", 0.00);
-              // Longitude = intent.getDoubleExtra("Longitude", 0.00);
               startActivity(food_intent);
               break;
+
           case "ATTRACTIONS":
               if (current_city.latitude!=0 && current_city.longitude!=0) {
                   Intent attractions_intent = new Intent(MainActivity.this, Attractions.class);
@@ -263,6 +261,19 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
 
             break;
+          case "ACCOMMODATION":
+              if (current_city.latitude != 0 && current_city.longitude != 0) {
+                  Intent accomodation_intent = new Intent(MainActivity.this, Accomadations.class);
+                  accomodation_intent.putExtra("Latitude", current_city.latitude);
+                  accomodation_intent.putExtra("Longitude", current_city.longitude);
+                  startActivity(accomodation_intent);
+              } else {
+                  Toast.makeText(getApplicationContext(), R.string.selectCityError,
+                          Toast.LENGTH_LONG).show();
+              }
+
+              break;
+
       }
       // TODO: Displaying text for testing purpose. Main functionality yet to implement
       Toast.makeText(

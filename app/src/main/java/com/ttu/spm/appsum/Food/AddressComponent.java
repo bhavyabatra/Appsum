@@ -1,23 +1,17 @@
-package com.ttu.spm.appsum.places;
+package com.ttu.spm.appsum.Food;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by Manohar on 27-Oct-15.
- */
-
-/**
- * Represents a single component in a Place's full address.  For example, the address "111 8th Avenue, New York, NY"
- * contains separate address components for "111" (the street number, "8th Avenue" (the route), "New York" (the city)
- * and "NY" (the US state).
+ * Created by Vinay on 29-10-2015.
  */
 public class AddressComponent {
     private final List<String> types = new ArrayList<>();
     private String longName, shortName;
 
-    public AddressComponent() {
+    protected AddressComponent() {
     }
 
     /**
@@ -35,7 +29,7 @@ public class AddressComponent {
      * @param longName of component
      * @return this
      */
-    public AddressComponent setLongName(String longName) {
+    protected AddressComponent setLongName(String longName) {
         this.longName = longName;
         return this;
     }
@@ -55,7 +49,7 @@ public class AddressComponent {
      * @param shortName of component
      * @return this
      */
-    public AddressComponent setShortName(String shortName) {
+    protected AddressComponent setShortName(String shortName) {
         this.shortName = shortName;
         return this;
     }
@@ -66,7 +60,7 @@ public class AddressComponent {
      * @param type to add
      * @return this
      */
-    public AddressComponent addType(String type) {
+    protected AddressComponent addType(String type) {
         types.add(type);
         return this;
     }

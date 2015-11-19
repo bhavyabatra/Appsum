@@ -1,4 +1,4 @@
-package com.ttu.spm.appsum.places;
+package com.ttu.spm.appsum.Hotels;
 
 import java.util.ArrayList;
 import java.util.Collections;
