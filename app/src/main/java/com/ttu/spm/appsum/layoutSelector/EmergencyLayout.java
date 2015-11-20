@@ -12,7 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
+import android.view.View;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -44,12 +45,17 @@ public class EmergencyLayout extends AppCompatActivity implements LocationListen
     EmergencyDatasource datasource;
 
 
+    Button volunteerButton;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency);
         // creating a new EmergencyDatasource object.
         datasource = new EmergencyDatasource(this);
+
+
         Intent intent = getIntent();
         setLocation = true;
         // getting country and cit data from MainActivity.java
@@ -57,29 +63,25 @@ public class EmergencyLayout extends AppCompatActivity implements LocationListen
         currentCity.country = intent.getStringExtra("Country");
 
 
-
         // calling the getData method to display emergenc details according to the city.
         //datasource.getData(currentCity.country);
-        Log.i(LOGTAG,"onCreate");
+        Log.i(LOGTAG, "onCreate");
         List<Emergency> fetchedDetails = datasource.getData(currentCity.country);
 
-        TextView editCountry = (TextView)findViewById(R.id.country_value);
+        TextView editCountry = (TextView) findViewById(R.id.country_value);
 
-        TextView editPolice = (TextView)findViewById(R.id.police_no_value);
-        TextView editAmbulance = (TextView)findViewById(R.id.ambulance_no_value);
-        TextView editFire = (TextView)findViewById(R.id.firecontrol_no_value);
+        TextView editPolice = (TextView) findViewById(R.id.police_no_value);
+        TextView editAmbulance = (TextView) findViewById(R.id.ambulance_no_value);
+        TextView editFire = (TextView) findViewById(R.id.firecontrol_no_value);
 
 
-
-        if (fetchedDetails.isEmpty())
-        {
+        if (fetchedDetails.isEmpty()) {
 
             editCountry.setText(" No Country Found");
             editPolice.setText(" NA");
             editAmbulance.setText(" NA");
             editFire.setText(" NA");
-        }
-        else{
+        } else {
 
             editCountry.setText(" " + fetchedDetails.get(0).getCountryName().toString());
             editPolice.setText(" " + fetchedDetails.get(0).getPoliceNo().toString());
@@ -88,6 +90,21 @@ public class EmergencyLayout extends AppCompatActivity implements LocationListen
 
         }
 
+
+        // Functionality for button click
+        volunteerButton = (Button) findViewById(R.id.volunteer_button);
+        volunteerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent volunteer_intent = new Intent(EmergencyLayout.this, VolunteerLayout.class);
+                volunteer_intent.putExtra("CityName", currentCity.city_name);
+                volunteer_intent.putExtra("Country", currentCity.country);
+                startActivity(volunteer_intent);
+
+
+            }
+        });
 
     }
 
@@ -138,25 +155,22 @@ public class EmergencyLayout extends AppCompatActivity implements LocationListen
                 MenuItem location_item = actionbar_menu.findItem(R.id.city_textview);
                 location_item.setTitle(cityName);
                 datasource = new EmergencyDatasource(this);
-                Log.i(LOGTAG,"onLocationChange");
+                Log.i(LOGTAG, "onLocationChange");
                 List<Emergency> fetchedDetails = datasource.getData(currentCity.country);
 
-                TextView editCountry = (TextView)findViewById(R.id.country_value);
-                TextView editPolice = (TextView)findViewById(R.id.police_no_value);
-                TextView editAmbulance = (TextView)findViewById(R.id.ambulance_no_value);
-                TextView editFire = (TextView)findViewById(R.id.firecontrol_no_value);
+                TextView editCountry = (TextView) findViewById(R.id.country_value);
+                TextView editPolice = (TextView) findViewById(R.id.police_no_value);
+                TextView editAmbulance = (TextView) findViewById(R.id.ambulance_no_value);
+                TextView editFire = (TextView) findViewById(R.id.firecontrol_no_value);
 
 
-
-                if (fetchedDetails.isEmpty())
-                {
+                if (fetchedDetails.isEmpty()) {
 
                     editCountry.setText(" No Country Found");
                     editPolice.setText(" NA");
                     editAmbulance.setText(" NA");
                     editFire.setText(" NA");
-                }
-                else{
+                } else {
 
                     editCountry.setText(" " + fetchedDetails.get(0).getCountryName().toString());
                     editPolice.setText(" " + fetchedDetails.get(0).getPoliceNo().toString());
@@ -234,24 +248,21 @@ public class EmergencyLayout extends AppCompatActivity implements LocationListen
                 MenuItem location_item = actionbar_menu.findItem(R.id.city_textview);
                 location_item.setTitle(currentCity.city_name);
                 datasource = new EmergencyDatasource(this);
-                Log.i(LOGTAG,"onActivityResult");
+                Log.i(LOGTAG, "onActivityResult");
                 List<Emergency> fetchedDetails = datasource.getData(currentCity.country);
-                TextView editCountry = (TextView)findViewById(R.id.country_value);
-                TextView editPolice = (TextView)findViewById(R.id.police_no_value);
-                TextView editAmbulance = (TextView)findViewById(R.id.ambulance_no_value);
-                TextView editFire = (TextView)findViewById(R.id.firecontrol_no_value);
+                TextView editCountry = (TextView) findViewById(R.id.country_value);
+                TextView editPolice = (TextView) findViewById(R.id.police_no_value);
+                TextView editAmbulance = (TextView) findViewById(R.id.ambulance_no_value);
+                TextView editFire = (TextView) findViewById(R.id.firecontrol_no_value);
 
 
-
-                if (fetchedDetails.isEmpty())
-                {
+                if (fetchedDetails.isEmpty()) {
 
                     editCountry.setText(" No Country Found");
                     editPolice.setText(" NA");
                     editAmbulance.setText(" NA");
                     editFire.setText(" NA");
-                }
-                else{
+                } else {
 
                     editCountry.setText(" " + fetchedDetails.get(0).getCountryName().toString());
                     editPolice.setText(" " + fetchedDetails.get(0).getPoliceNo().toString());
@@ -263,4 +274,15 @@ public class EmergencyLayout extends AppCompatActivity implements LocationListen
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        datasource.open();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        datasource.close();
+    }
 }// end of class

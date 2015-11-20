@@ -65,6 +65,11 @@
             android:name=".Entertainment.Movies"
             android:label="Movies"
             android:parentActivityName=".layoutSelector.MainActivity"></activity>
+        <activity
+            android:name=".layoutSelector.VolunteerLayout"
+            android:label="VOLUNTEERS"
+            android:parentActivityName=".layoutSelector.VolunteerLayout" />
+
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

@@ -89,6 +89,13 @@
         android:layout_toRightOf="@+id/ambulance_no"
         android:layout_toEndOf="@+id/ambulance_no" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/view_volunteers"
+        android:id="@+id/volunteer_button"
+        android:layout_below="@+id/firecontrol_no"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

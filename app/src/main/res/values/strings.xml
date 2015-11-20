@@ -5,4 +5,5 @@
     <string name="food_layout_title">Food (sample layout)</string>
     <string name="selectCityError">No city selected. Please select the city</string>
     <string name="noCountryFound">" No Country Found"</string>
+    <string name="view_volunteers">VIEW VOLUNTEERS</string>
 </resources>

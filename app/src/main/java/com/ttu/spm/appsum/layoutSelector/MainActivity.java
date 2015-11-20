@@ -311,12 +311,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
               break;
 
       }
-      // TODO: Displaying text for testing purpose. Main functionality yet to implement
-      Toast.makeText(
-              getApplicationContext(),
-              ((TextView) view.findViewById(R.id.grid_item_text))
-                      .getText(), Toast.LENGTH_SHORT).show();
-
+      
      }
 
 }
