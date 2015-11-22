@@ -50,20 +50,6 @@ public class VolunteerDataSource {
         Log.i(LOGTAG, city);
         Log.i(LOGTAG, country);
 
-      //  database.execSQL("INSERT INTO VOLUNTEER(volunteer_name,volunteer_email,volunteer_teleno,volunteer_city,volunteer_country) VALUES('Jackson','JJ365@gmail.com','806-723-999','Lubbock', 'United States')");
-     //database.execSQL("INSERT INTO VOLUNTEER(volunteer_name,volunteer_email,volunteer_teleno,volunteer_city,) VALUES('Sam','Sam@gmail.com','806-723-994 ','Lubbock', 'United States')");
-
-        database.execSQL("INSERT INTO VOLUNTEER(volunteer_name,volunteer_email,volunteer_teleno,volunteer_city,volunteer_country) VALUES('Patterson','Patterson@gmail.com',' ','Lubbock', 'United States')" );
-        database.execSQL("INSERT INTO VOLUNTEER(volunteer_name,volunteer_email,volunteer_teleno,volunteer_city,volunteer_country) VALUES('Kid','Kid@gmail.com',' ','Lubbock', 'United States')" );
-        database.execSQL("INSERT INTO VOLUNTEER(volunteer_name,volunteer_email,volunteer_teleno,volunteer_city,volunteer_country) VALUES('Jamal','Jamal@gmail.com','806-723-992','Lubbock', 'United States')" );
-        database.execSQL("INSERT INTO VOLUNTEER(volunteer_name,volunteer_email,volunteer_teleno,volunteer_city,volunteer_country) VALUES('Patty','Patty@gmail.com',' ','Lubbock', 'United States')" );
-        database.execSQL("INSERT INTO VOLUNTEER(volunteer_name,volunteer_email,volunteer_teleno,volunteer_city,volunteer_country) VALUES('Rogers Adam','Rogers Adam5@gmail.com',' ','Lubbock', 'United States')" );
-        database.execSQL("INSERT INTO VOLUNTEER(volunteer_name,volunteer_email,volunteer_teleno,volunteer_city,volunteer_country) VALUES('Christy Keeeive','Keeeive65@gmail.com',' ','Lubbock', 'United States')" );
-        database.execSQL("INSERT INTO VOLUNTEER(volunteer_name,volunteer_email,volunteer_teleno,volunteer_city,volunteer_country) VALUES('Jacob','Jacob.Jones365@gmail.com',' ','Lubbock', 'United States')" );
-        database.execSQL("INSERT INTO VOLUNTEER(volunteer_name,volunteer_email,volunteer_teleno,volunteer_city,volunteer_country) VALUES('Iyer','Iyer365@gmail.com',' ','Hyderabad', 'India')" );
-        database.execSQL("INSERT INTO VOLUNTEER(volunteer_name,volunteer_email,volunteer_teleno,volunteer_city,volunteer_country) VALUES('Ahmed','ahmed@gmail.com',' ','Hyderabad', 'Pakistan')" );
-        database.execSQL("INSERT INTO VOLUNTEER(volunteer_name,volunteer_email,volunteer_teleno,volunteer_city,volunteer_country) VALUES('JJackson','JJJ365@gmail.com',' ','Lubbock', 'United States')" );
-
 
         Cursor cursor = database.query(VolunteerDBOpenHelper.TABLE_NAME_VOLUNTEER,  //table name
                 allColumns, //columns
