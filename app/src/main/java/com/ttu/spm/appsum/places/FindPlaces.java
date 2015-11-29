@@ -131,7 +131,7 @@ try{
             String iconUrl = result.optString(STRING_ICON, null);
             String name = result.optString(STRING_NAME);
             String addr = result.optString(STRING_ADDRESS, null);
-            double rating = result.optDouble(DOUBLE_RATING, -1);
+            double rating = result.optDouble(DOUBLE_RATING, 0);
             String vicinity = result.optString(STRING_VICINITY, null);
 
             // see if the place is open, fail-safe if opening_hours is not present

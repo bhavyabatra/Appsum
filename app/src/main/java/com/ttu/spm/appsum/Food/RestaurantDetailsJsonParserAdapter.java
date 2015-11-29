@@ -49,7 +49,7 @@ public class RestaurantDetailsJsonParserAdapter extends ArrayAdapter<RestaurantD
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.attraction_list_item, parent, false);
+            convertView = inflater.inflate(R.layout.restaurant_list, parent, false);
         }
 
         RestaurantDetailsJsonParser Location = restaurnt_list.get(position);

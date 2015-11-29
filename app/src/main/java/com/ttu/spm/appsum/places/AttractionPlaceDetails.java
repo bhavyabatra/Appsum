@@ -1,13 +1,20 @@
 package com.ttu.spm.appsum.places;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ttu.spm.appsum.R;
@@ -76,6 +83,8 @@ public Place PlaceDetails;
 
     private class getPlaceDetails extends AsyncTask<String, Void, String> {
         protected String place;
+        private ProgressDialog dialog;
+
         @Override
         protected String doInBackground(String... placeId) {
             HttpURLConnection connection = null;
@@ -109,10 +118,28 @@ public Place PlaceDetails;
         }
 
         @Override
+        protected void onPreExecute() {
+
+                dialog = new ProgressDialog(AttractionPlaceDetails.this);
+            dialog.setCanceledOnTouchOutside(false);
+
+
+            dialog.setMessage("Loading...");
+            dialog.show();
+        }
+
+        @Override
         protected void onPostExecute(String result) {
             if (result.length() > 0) {
                 try {
                     parsePlaceDetails(result);
+                    RelativeLayout placeDetailsLayout =(RelativeLayout)findViewById(R.id.place_Details_Layout);
+                    placeDetailsLayout.setVisibility(View.VISIBLE);
+                    if (dialog.isShowing()) {
+                        dialog.dismiss();
+                    }
+
+
                 } catch (JSONException J) {
                 }
             }
@@ -134,7 +161,108 @@ public Place PlaceDetails;
             TextView reviewCountView=(TextView) findViewById(R.id.reviewCount);
             Integer reviewCount =new Integer(PlaceDetails.getTotalReviews());
             reviewCountView.setText(reviewCount.toString()+" Reviews");
+Hours hours=PlaceDetails.getHours();
+          List<Hours.Period> periods_List=  hours.getPeriods();
+            int day=0;
+            int size=periods_List.size();
+            if (size==0){
+                TextView HoursTitle=(TextView) findViewById(R.id.HoursTitle);
+                HoursTitle.setVisibility(View.GONE);
+            }
+            while (size!=0 && day<size){
+                Hours.Period period=periods_List.get(day);
+                switch (period.getOpeningDay()) {
+                    case MONDAY:
+                        TextView mon = (TextView) findViewById(R.id.Hour_Mon);
+                        TextView monday = (TextView) findViewById(R.id.Mon);
+                        monday.setVisibility(View.VISIBLE);
+                        mon.setVisibility(View.VISIBLE);
+                        mon.setText(period.getOpeningTime() +" to "+ period.getClosingTime());
+                        break;
+                    case TUESDAY:
+                        TextView Tue = (TextView) findViewById(R.id.Hour_Tue);
+                        Tue.setText(period.getOpeningTime() +" to "+ period.getClosingTime());
+                        TextView tuesday = (TextView) findViewById(R.id.Tue);
+                        tuesday.setVisibility(View.VISIBLE);
+                        Tue.setVisibility(View.VISIBLE);
+                        break;
+                    case WEDNESDAY:
+                        TextView Wed = (TextView) findViewById(R.id.Hour_Wed);
+                        Wed.setText(period.getOpeningTime() +" to "+ period.getClosingTime());
+                        TextView wednesday = (TextView) findViewById(R.id.Wed);
+                        wednesday.setVisibility(View.VISIBLE);
+                        Wed.setVisibility(View.VISIBLE);
+                        break;
+                    case THURSDAY:
+                        TextView Thur = (TextView) findViewById(R.id.Hour_Thu);
+                        Thur.setText(period.getOpeningTime() +" to "+ period.getClosingTime());
+                        TextView Thursday = (TextView) findViewById(R.id.Thu);
+                        Thursday.setVisibility(View.VISIBLE);
+                        Thur.setVisibility(View.VISIBLE);
+                        break;
+                    case FRIDAY:
+                        TextView Fri = (TextView) findViewById(R.id.Hour_Fri);
+                        Fri.setText(period.getOpeningTime() +" to "+ period.getClosingTime());
+                        TextView Friday = (TextView) findViewById(R.id.Fri);
+                        Friday.setVisibility(View.VISIBLE);
+                        Fri.setVisibility(View.VISIBLE);
+                        break;
+                    case SATURDAY:
+                        TextView Sat = (TextView) findViewById(R.id.Hour_Sat);
+                        Sat.setText(period.getOpeningTime() +" to "+ period.getClosingTime());
+                        TextView Saturday = (TextView) findViewById(R.id.Sat);
+                        Saturday.setVisibility(View.VISIBLE);
+                        Sat.setVisibility(View.VISIBLE);
+                        break;
+                    case SUNDAY:
+                        TextView Sun = (TextView) findViewById(R.id.Hour_Sun);
+                        Sun.setText(period.getOpeningTime() +" to "+ period.getClosingTime());
+                        TextView Sunday = (TextView) findViewById(R.id.Sun);
+                        Sunday.setVisibility(View.VISIBLE);
+                        Sun.setVisibility(View.VISIBLE);
+                        break;
+                }
+                ++day;
+                }
+            List<Review> Reviews=  PlaceDetails.getReviews();
+            int ReviewsSize=Reviews.size();
+            int reviewno=0;
+            while(ReviewsSize!=0 && reviewno < ReviewsSize && reviewno<4) {
+              //  TextView ReviewHeader = (TextView) findViewById(R.id.Reviewer_name);
+                //ReviewHeader.setText(Reviews.get(0).getAuthor());
+                //TextView Review = (TextView) findViewById(R.id.review);
+                //Review.setText(Reviews.get(0).getText());
+                //
+                LinearLayout linearLayout = (LinearLayout) findViewById(R.id.reviewLayout);
 
+                // Add textview 1
+                TextView textView1 = new TextView(AttractionPlaceDetails.this);
+                textView1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT));
+                        textView1.setText(Reviews.get(reviewno).getAuthor());
+                String text = "<font color=#4386F4>"+Reviews.get(reviewno).getAuthor()+"  -"+"</font> <font color=#3F7E00>"+Reviews.get(reviewno).getRating()+"</font>";
+                textView1.setText(Html.fromHtml(text));
+              //  textView1.setTextColor(Color.parseColor("#4386F4")); // hex color 0xAARRGGBB
+               // textView1.append();
+                textView1.setGravity(Gravity.LEFT);
+                textView1.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
+                textView1.setPadding(8, 8, 8, 8);// in pixels (left, top, right, bottom)
+                linearLayout.addView(textView1);
+
+                // Add textview 2
+                TextView textView2 = new TextView(AttractionPlaceDetails.this);
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT);
+                layoutParams.gravity = Gravity.LEFT;
+                layoutParams.setMargins(10, 10, 10, 10); // (left, top, right, bottom)
+                textView2.setLayoutParams(layoutParams);
+                textView2.setText(Reviews.get(reviewno).getText());
+                textView2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+                textView2.setTextColor(Color.BLACK); // hex color 0xAARRGGBB
+                linearLayout.addView(textView2);
+                //
+                ++reviewno;
+            }
             Log.e("Check","parsing");
         }
     }
@@ -145,9 +273,15 @@ public Place PlaceDetails;
     }
 
     public void loadWebsite(View v) {
-        Uri uriUrl = Uri.parse(PlaceDetails.getWebsite());
-        Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
-        startActivity(launchBrowser);
+        String UrlString = PlaceDetails.getWebsite();
+        if (UrlString==null) {
+
+        }
+        else {
+            Uri uriUrl = Uri.parse(UrlString);
+            Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+            startActivity(launchBrowser);
+        }
     }
     public void loadMaps(View v) {
         Intent travel_intent = new Intent(AttractionPlaceDetails.this, TransportDetails.class);

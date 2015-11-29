@@ -1,5 +1,6 @@
 package com.ttu.spm.appsum.Transport;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -143,6 +144,8 @@ public class TransportDetails extends AppCompatActivity implements GoogleApiClie
     }
 
     private class getPlaceDetails extends AsyncTask<String, Void, String> {
+        private ProgressDialog dialog;
+
         @Override
         protected String doInBackground(String... placeId) {
             HttpURLConnection connection = null;
@@ -170,12 +173,24 @@ public class TransportDetails extends AppCompatActivity implements GoogleApiClie
             return data;    }
 
         @Override
+        protected void onPreExecute() {
+            dialog = new ProgressDialog(TransportDetails.this);
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.setMessage("Loading...");
+            dialog.show();
+        }
+
+        @Override
         protected void onPostExecute(String result) {
             if (result.length()>0) {
                 try {
                     parsePlaceDetails(result);
                     LinearLayout placeDetailsLayout =(LinearLayout)findViewById(R.id.placeDetailsLayout);
                     placeDetailsLayout.setVisibility(View.VISIBLE);
+                    if (dialog.isShowing()) {
+                        dialog.dismiss();
+                    }
+
                 } catch (JSONException J) {
                 }
             }

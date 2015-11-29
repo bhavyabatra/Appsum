@@ -5,10 +5,15 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.ttu.spm.appsum.R;
+import com.ttu.spm.appsum.Transport.TransportDetails;
+import com.ttu.spm.appsum.places.AttractionPlaceDetails;
+import com.ttu.spm.appsum.places.Place;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +72,20 @@ public class Accomadations extends AppCompatActivity {
                 }
             }
         });
+        hotels_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+                HotelDetails selectedPlace = hotels.get(position);
+                if (position > -1) {
+                    Intent travel_intent = new Intent(Accomadations.this, TransportDetails.class);
+                    travel_intent.putExtra("PlaceId", selectedPlace.getPlaceId());
+                    travel_intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(travel_intent);
+                }
+
+
+            }
+        });
         try {
             getAttractions ga = new getAttractions(Accomadations.this);
             ga.execute("Test");
@@ -81,6 +100,27 @@ public class Accomadations extends AppCompatActivity {
     // Class to hold the token for next page results
     public class HotelResults {
         protected String next_page_token;
+    }
+    @Override
+    protected void onSaveInstanceState(Bundle state) {
+        state.putString("Saving", "State");
+        super.onSaveInstanceState(state);
+
+    }
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        String test = savedInstanceState.getString("Saving");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
     }
 
     //
@@ -102,6 +142,7 @@ public class Accomadations extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
+            dialog.setCanceledOnTouchOutside(false);
             dialog.setMessage("Loading...");
             dialog.show();
         }

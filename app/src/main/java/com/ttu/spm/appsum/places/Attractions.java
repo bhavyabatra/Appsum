@@ -120,6 +120,7 @@ public class Attractions extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
+            dialog.setCanceledOnTouchOutside(false);
             dialog.setMessage("Loading...");
             dialog.show();
         }
@@ -157,4 +158,27 @@ public class Attractions extends AppCompatActivity {
             places_ListView.setSelection(last_Visible_item);
         }
     }
+    @Override
+    protected void onSaveInstanceState(Bundle state) {
+        state.putString("Saving", "State");
+        super.onSaveInstanceState(state);
+
+    }
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        String test = savedInstanceState.getString("Saving");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+
 }

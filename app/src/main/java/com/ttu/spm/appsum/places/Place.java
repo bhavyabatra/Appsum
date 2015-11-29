@@ -73,7 +73,7 @@ public class Place {
             String phone = result.optString(STRING_PHONE_NUMBER, null);
             String iconUrl = result.optString(STRING_ICON, null);
             String internationalPhone = result.optString(STRING_INTERNATIONAL_PHONE_NUMBER, null);
-            double rating = result.optDouble(DOUBLE_RATING, -1);
+            double rating = result.optDouble(DOUBLE_RATING, 0);
             String url = result.optString(STRING_URL, null);
             String vicinity = result.optString(STRING_VICINITY, null);
             String website = result.optString(STRING_WEBSITE, null);

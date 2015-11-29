@@ -47,6 +47,7 @@ public class Restaurants extends AppCompatActivity {
         }
         @Override
         protected void onPreExecute() {
+            dialog.setCanceledOnTouchOutside(false);
             dialog.setMessage("Loading...");
             dialog.show();
         }

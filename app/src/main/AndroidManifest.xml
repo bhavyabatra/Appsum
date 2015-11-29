@@ -12,7 +12,8 @@
             android:name=".layoutSelector.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop"
-            android:logo="@drawable/appsum_icon">
+            android:logo="@drawable/appsum_icon"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -21,54 +22,67 @@
         <activity
             android:name=".layoutSelector.FoodLayout"
             android:label="@string/food_layout_title"
-            android:parentActivityName=".layoutSelector.MainActivity"></activity>
+            android:parentActivityName=".layoutSelector.MainActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".CitySelection.CitySelectionLayout"
             android:label="Select City"
-            android:parentActivityName=".layoutSelector.MainActivity"></activity>
+            android:parentActivityName=".layoutSelector.MainActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".places.Attractions"
             android:label="Attractions"
-            android:parentActivityName=".layoutSelector.MainActivity"></activity>
+            android:launchMode="singleTop"
+            android:parentActivityName=".layoutSelector.MainActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".layoutSelector.EmergencyLayout"
             android:label="EMERGENCY"
-            android:parentActivityName=".layoutSelector.MainActivity" />
+            android:parentActivityName=".layoutSelector.MainActivity"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".CitySelection.CitySelectionLayoutEmergency"
             android:label="Select City"
-            android:parentActivityName=".layoutSelector.EmergencyLayout" />
+            android:parentActivityName=".layoutSelector.EmergencyLayout"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".places.AttractionPlaceDetails"
             android:label="CTScan"
             android:launchMode="singleTop"
-            android:parentActivityName=".places.Attractions" />
+            android:parentActivityName=".places.Attractions"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Transport.TransportDetails"
-            android:label="@string/app_name">
-        </activity>
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".layoutSelector.TransportLayer"
             android:label="Transport"
             android:launchMode="singleTop"
-            android:parentActivityName=".layoutSelector.MainActivity" />
+            android:parentActivityName=".layoutSelector.MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Hotels.Accomadations"
             android:label="ACCOMMODATIONS"
-            android:parentActivityName=".layoutSelector.MainActivity" />
+            android:launchMode="singleTop"
+            android:parentActivityName=".layoutSelector.MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Food.Restaurants"
             android:label="Restaurants"
-            android:parentActivityName=".layoutSelector.MainActivity"></activity>
+            android:parentActivityName=".layoutSelector.MainActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Entertainment.Movies"
             android:label="Movies"
-            android:parentActivityName=".layoutSelector.MainActivity"></activity>
+            android:parentActivityName=".layoutSelector.MainActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".layoutSelector.VolunteerLayout"
             android:label="VOLUNTEERS"
-            android:parentActivityName=".layoutSelector.VolunteerLayout" />
+            android:parentActivityName=".layoutSelector.VolunteerLayout"
+            android:screenOrientation="portrait" />
 
 
         <meta-data
@@ -77,7 +91,9 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-        <meta-data android:name="com.usebutton.applicationid" android:value="app-4e621db2a8146052"/>
+        <meta-data
+            android:name="com.usebutton.applicationid"
+            android:value="app-4e621db2a8146052" />
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -85,5 +101,5 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 </manifest>
