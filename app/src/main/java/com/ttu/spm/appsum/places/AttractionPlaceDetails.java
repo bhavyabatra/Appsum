@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ttu.spm.appsum.R;
 import com.ttu.spm.appsum.Transport.TransportDetails;
@@ -161,6 +162,8 @@ public Place PlaceDetails;
             TextView reviewCountView=(TextView) findViewById(R.id.reviewCount);
             Integer reviewCount =new Integer(PlaceDetails.getTotalReviews());
             reviewCountView.setText(reviewCount.toString()+" Reviews");
+            //
+            // Get working hours and display
 Hours hours=PlaceDetails.getHours();
           List<Hours.Period> periods_List=  hours.getPeriods();
             int day=0;
@@ -235,31 +238,29 @@ Hours hours=PlaceDetails.getHours();
                 //
                 LinearLayout linearLayout = (LinearLayout) findViewById(R.id.reviewLayout);
 
-                // Add textview 1
-                TextView textView1 = new TextView(AttractionPlaceDetails.this);
-                textView1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                // Add ReviewAuthor
+                TextView ReviewAuthor = new TextView(AttractionPlaceDetails.this);
+                ReviewAuthor.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT));
-                        textView1.setText(Reviews.get(reviewno).getAuthor());
+                        ReviewAuthor.setText(Reviews.get(reviewno).getAuthor());
                 String text = "<font color=#4386F4>"+Reviews.get(reviewno).getAuthor()+"  -"+"</font> <font color=#3F7E00>"+Reviews.get(reviewno).getRating()+"</font>";
-                textView1.setText(Html.fromHtml(text));
-              //  textView1.setTextColor(Color.parseColor("#4386F4")); // hex color 0xAARRGGBB
-               // textView1.append();
-                textView1.setGravity(Gravity.LEFT);
-                textView1.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
-                textView1.setPadding(8, 8, 8, 8);// in pixels (left, top, right, bottom)
-                linearLayout.addView(textView1);
+                ReviewAuthor.setText(Html.fromHtml(text));
+                ReviewAuthor.setGravity(Gravity.LEFT);
+                ReviewAuthor.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
+                ReviewAuthor.setPadding(8, 8, 8, 8);// in pixels (left, top, right, bottom)
+                linearLayout.addView(ReviewAuthor);
 
-                // Add textview 2
-                TextView textView2 = new TextView(AttractionPlaceDetails.this);
+                // Add reviewText
+                TextView reviewText = new TextView(AttractionPlaceDetails.this);
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT);
                 layoutParams.gravity = Gravity.LEFT;
                 layoutParams.setMargins(10, 10, 10, 10); // (left, top, right, bottom)
-                textView2.setLayoutParams(layoutParams);
-                textView2.setText(Reviews.get(reviewno).getText());
-                textView2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-                textView2.setTextColor(Color.BLACK); // hex color 0xAARRGGBB
-                linearLayout.addView(textView2);
+                reviewText.setLayoutParams(layoutParams);
+                reviewText.setText(Reviews.get(reviewno).getText());
+                reviewText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+                reviewText.setTextColor(Color.BLACK); // hex color 0xAARRGGBB
+                linearLayout.addView(reviewText);
                 //
                 ++reviewno;
             }
@@ -275,6 +276,8 @@ Hours hours=PlaceDetails.getHours();
     public void loadWebsite(View v) {
         String UrlString = PlaceDetails.getWebsite();
         if (UrlString==null) {
+            Toast.makeText(getApplicationContext(), "Sorry, no website found for this place",
+                    Toast.LENGTH_LONG).show();
 
         }
         else {

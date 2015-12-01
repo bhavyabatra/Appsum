@@ -127,8 +127,6 @@ public class TransportDetails extends AppCompatActivity implements GoogleApiClie
                 URL imageURL = new URL(uri);
                 bitmapImage = BitmapFactory.decodeStream(imageURL.openStream());
             } catch (Throwable t) {
-                //Toast.makeText(context, "Unable to get cities. Please check internet connection",
-                //      Toast.LENGTH_LONG).show();
 
             }
             return bitmapImage;
@@ -165,8 +163,6 @@ public class TransportDetails extends AppCompatActivity implements GoogleApiClie
                     buffer.append(line + "\r\n");
                 }
             } catch (Throwable t) {
-                //Toast.makeText(context, "Unable to get cities. Please check internet connection",
-                //      Toast.LENGTH_LONG).show();
 
             }
             data=buffer.toString();
