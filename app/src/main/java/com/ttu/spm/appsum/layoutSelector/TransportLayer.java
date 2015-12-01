@@ -28,12 +28,6 @@ import java.util.List;
 
 public class TransportLayer extends AppCompatActivity
         implements GoogleApiClient.OnConnectionFailedListener {
-    private static final LatLngBounds BOUNDS_GREATER_SYDNEY = new LatLngBounds(
-            new LatLng(-34.041458, 150.790100), new LatLng(-33.682247, 151.383362));
-    /**
-     * GoogleApiClient wraps our service connection to Google Play Services and provides access
-     * to the user's sign in state as well as the Google's APIs.
-     */
     protected GoogleApiClient mGoogleApiClient;
     private AutocompleteFilter mPlaceFilter;
     private PlaceAutocompleteAdapter mAdapter;
@@ -91,14 +85,19 @@ public class TransportLayer extends AppCompatActivity
                 .build();
 
         setContentView(R.layout.transport_layout);
-        LatLng center = new LatLng(33.5842585345, -101.8782807623);
-        LatLng southwest = SphericalUtil.computeOffset(center, 1000 * Math.sqrt(2.0), 225);
-        LatLng northeast = SphericalUtil.computeOffset(center, 1000 * Math.sqrt(2.0), 45);
+        Intent intent = getIntent();
+        // Get Latitude and Longitude from parent activity
+       double Latitude = intent.getDoubleExtra("Latitude", 0.00);
+        double  Longitude = intent.getDoubleExtra("Longitude", 0.00);
+
+        LatLng center = new LatLng(Latitude, Longitude);
+        LatLng southwest = SphericalUtil.computeOffset(center, 20000 * Math.sqrt(2.0), 225);
+        LatLng northeast = SphericalUtil.computeOffset(center, 20000 * Math.sqrt(2.0), 45);
         bounds = new LatLngBounds(southwest, northeast);
         // Retrieve the AutoCompleteTextView that will display Place suggestions.
         mAutocompleteView = (AutoCompleteTextView)
                 findViewById(R.id.autocomplete_places);
-
+        mAutocompleteView.setText("");
         // Register a listener that receives callbacks when a suggestion has been selected
         mAutocompleteView.setOnItemClickListener(mAutocompleteClickListener);
 

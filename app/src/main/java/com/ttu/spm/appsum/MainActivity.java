@@ -160,11 +160,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        else if (id==R.id.cityicon){
+         if (id==R.id.cityicon){
             //Launch City selection activity
             Intent city_Selection_Intent = new Intent(MainActivity.this, CitySelectionLayout.class);
             startActivityForResult(city_Selection_Intent, CITY_REQUEST_CODE);

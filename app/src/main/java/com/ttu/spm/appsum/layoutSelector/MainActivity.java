@@ -187,10 +187,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        else if (id==R.id.cityicon){
+        if (id==R.id.cityicon){
             //Launch City selection activity
             Intent city_Selection_Intent = new Intent(MainActivity.this, CitySelectionLayout.class);
             startActivityForResult(city_Selection_Intent, CITY_REQUEST_CODE);
@@ -246,8 +243,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
           case "TRANSPORT":
               if (current_city.latitude!=0 && current_city.longitude!=0) {
                   Intent transport_intent = new Intent(MainActivity.this, TransportLayer.class);
-                  // attractions_intent.putExtra("Latitude", current_city.latitude);
-                  //attractions_intent.putExtra("Longitude", current_city.longitude);
+                  transport_intent.putExtra("Latitude", current_city.latitude);
+                  transport_intent.putExtra("Longitude", current_city.longitude);
                   startActivity(transport_intent);
               }
               else{
